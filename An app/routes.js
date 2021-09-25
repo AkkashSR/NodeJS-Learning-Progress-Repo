@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { Module } = require("module");
 
 const requestHandler = (req, res) => {
   const url = req.url;
@@ -9,33 +8,42 @@ const requestHandler = (req, res) => {
     res.write("<html>");
     res.write("<head><title>Enter Message</title></head>");
     res.write(
-      "<body><form action='/message' method='POST'><input type='text' name='message'><button type='submit'>Send</button></form></body>"
+      '<body><form action="create-user" method="POST"><input type="text" name="username"><button type="submit">Sumbit</button></form></body>'
     );
     res.write("</html>");
     return res.end();
   }
-  if (url === "/message" && method === "POST") {
-    const body = [];
-    req.on("data", (chunk) => {
-      console.log(chunk);
-      body.push(chunk);
-    });
-    req.on("end", () => {
-      const parsedBody = Buffer.concat(body).toString();
-      const messasge = parsedBody.split("=")[1];
-      fs.writeFileSync("message.txt", messasge);
-    });
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
+  if (url === "/users") {
+    res.setHeader("Content-Type", "text/html");
+    res.write("<html>");
+    res.write("<head><title>Enter Message</title></head>");
+    res.write(
+      `<body>
+      <ul>
+        <li>User1</li>
+        <li>User2</li>
+        <li>User3</li>
+      </ul>
+      </body>`
+    );
+    res.write("</html>");
     return res.end();
   }
+
+  if(url === '/create-user' && method==='POST'){
+    const body = [];
+    req.on('data', (chunk) => {
+      body.push(chunk);
+    });
+    req.on('end', () => {
+      const parsedBody = Buffer.concat(body).toString();
+      console.log(parsedBody.split("=")[1]);
+    });
+    res.statusCode = 302;
+    res.setHeader('Location', '/');
+    res.end();
+  }
   //process.exit();
-  res.setHeader("Content-Type", "text/html");
-  res.write("<html>");
-  res.write("<head><title>My first page</title></head>");
-  res.write("<body><h1>Hello</h1></body>");
-  res.write("</html>");
-  res.end();
 };
 
 module.exports = requestHandler;
