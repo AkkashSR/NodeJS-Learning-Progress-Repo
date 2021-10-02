@@ -16,3 +16,9 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 3. Learnt how to serve files statically.   
 4. Introduction to the template engines.  
 5. Started off with pug template engine. Will continue to go through this more next weekend(02-10-2021 & 03-10-2021)  
+
+### 03-10-2021:
+
+1. Started with MVC.  
+2. Started building upon the shopping app.  
+3. Will get into using a database (SQL and No-SQL) by tomorrow.  
