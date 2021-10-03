@@ -9,14 +9,15 @@ block content
         form.product-form(action="/admin/edit-product", method="POST")
             .form-control
                 label(for="title") Title
-                input(type="text", name="title" value= product.title)#title 
+                input(type="text", name="title" value=product.title)#title 
             .form-control
                 label(for="description") Description 
-                textarea(name="description", cols="30", rows="10" value=product.description)#description
+                textarea(name="description", cols="30", rows="10")#description #{product.description}
             .form-control 
                 label(for="imageUrl") Image URL 
                 input(type="text", name="imageUrl" value=product.imageUrl)#imageUrl
             .form-control 
                 label(for="price") Price 
                 input(type="number", name="price" step="0.01" value=product.price)#price   
-            button.btn(type="submit") Confirm edit
+            input(type="hidden", name="productId" value=product.id)
+            button.btn(type="submit") Update product

@@ -20,7 +20,7 @@ block content
                             a(href = "/product-detail/" + prod.id).btn Product Details
                             form(action="./cart" method="POST")
                                 button.btn(type="Submit") Add to cart
-                                input(type="hidden", name="productId" value= prod.id)  
+                                input(type="hidden", name="productId", value= prod.id)  
         else 
             h1 No Products 
         

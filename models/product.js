@@ -1,40 +1,29 @@
-const fs = require("fs").promises;
-const path = require("path");
+const Sequelize = require('sequelize');
 
-module.exports = class Product {
-  constructor(title, imageUrl, description, price) {
-    this.title = title;
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.price = price;
-  }
+const sequelize = require('../util/database');
 
-  async save() {
-    this.id = Math.random().toString();
-    const p = path.join(
-      path.dirname(require.main.filename),
-      "data",
-      "products.json"
-    );
-    const data = await fs.readFile(p);
-    let products = [];
-    products = JSON.parse(data);
-    products.push(this);
-    fs.writeFile(p, JSON.stringify(products), (err) => console.log(err));
+const Product = sequelize.define('product', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  price: {
+    type: Sequelize.DOUBLE,
+    allowNull: false
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  imageUrl: {
+    type: Sequelize.STRING
   }
+});
 
-  static async fetchAll() {
-    const p = path.join(
-      path.dirname(require.main.filename),
-      "data",
-      "products.json"
-    );
-    let data = await fs.readFile(p);
-    return JSON.parse(data);
-  }
-
-  static async findById(id){
-    const products = await Product.fetchAll();
-    return products.find((prod) => prod.id === id);
-  }
-};
+module.exports = Product;
