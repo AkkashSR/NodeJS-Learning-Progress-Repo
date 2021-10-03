@@ -28,3 +28,6 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 1. Started looking into incorporating SQL into the shopping app.  
 2. Learnt about the Sequelize package.
 3. Will go through Sequelize more during the next weekend(09-10-2021 & 10-10-2021)  
+
+
+### At this point, I'm really starting to enjoy node.js a lot. Will definitely build a project using node.js as the backend and either React or Vue.
