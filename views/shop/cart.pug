@@ -10,16 +10,16 @@ block content
                 each prod of products 
                     article.card.product-item 
                         header.card__header
-                            h1.card__header #{prod.productData.title} 
+                            h1.card__header #{prod.title} 
                         div.card__image
-                            img(src= prod.productData.imageUrl, alt= prod.productData.imageUrl)
+                            img(src= prod.imageUrl, alt= prod.imageUrl)
                         div.card__content 
-                            h2.product__price #{prod.productData.price}
-                            p.product__description Quantity: #{prod.qty}
+                            h2.product__price #{prod.price}
+                            p.product__description Quantity: #{prod.cartItem.quantity}
                         div.card__actions
                             form(action="./delete-product-from-cart" method="POST")
                                 button.btn(type="Submit") Delete product from cart
-                                input(type="hidden", name="productId", value= prod.productData.id)
-            form(action="/checkout", method="POST")
-                button.btn(type = "Submit") Proceed to Checkout 
-                input(type="hidden", name="productId", value=cart)
+                                input(type="hidden", name="productId", value= prod.id)
+            .centered 
+                form(action="/create-order", method="POST")
+                    button.btn(type = "Submit") Order Now 

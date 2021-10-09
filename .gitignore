@@ -108,3 +108,6 @@ PAT.txt
 
 # VSCode files
 .vscode
+
+# Database files
+util/database.js

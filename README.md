@@ -28,3 +28,9 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 1. Started looking into incorporating SQL into the shopping app.  
 2. Learnt about the Sequelize package.
 3. Will go through Sequelize more during the next weekend(09-10-2021 & 10-10-2021)  
+
+### 09-10-2021:
+
+1. Finished off Sequelize. I do not like working with it.
+2. Looked into TypeORM. Looks very familiar since I've already worked using Hibernate.
+3. Will get into No-SQL tomorrow. MongoDB should be interesting, I hope.
