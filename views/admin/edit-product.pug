@@ -19,5 +19,5 @@ block content
             .form-control 
                 label(for="price") Price 
                 input(type="number", name="price" step="0.01" value=product.price)#price   
-            input(type="hidden", name="productId" value=product.id)
+            input(type="hidden", name="productId" value=product._id)
             button.btn(type="submit") Update product

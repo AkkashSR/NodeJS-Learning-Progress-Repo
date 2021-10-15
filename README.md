@@ -36,3 +36,9 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 1. Finished off Sequelize. I do not like working with it.
 2. Looked into TypeORM. Looks very familiar since I've already worked using Hibernate.
 3. Will get into No-SQL tomorrow. MongoDB should be interesting, I hope.
+
+
+### 14-10-2021:
+
+1. Started MongoDB. Personally, it looks easier than SQL.
+2. Will look more into MongoDB and Mongoose on the 15th

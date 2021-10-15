@@ -17,10 +17,10 @@ block content
                             h2.product__price #{prod.price}
                             p.product__description #{prod.description}
                         div.card__actions 
-                            a(href = "/product-detail/" + prod.id).btn Product Details
+                            a(href = "/product-detail/" + prod._id).btn Product Details
                             form(action="./cart" method="POST")
                                 button.btn(type="Submit") Add to cart
-                                input(type="hidden", name="productId", value= prod.id)  
+                                input(type="hidden", name="productId", value= prod._id)  
         else 
             h1 No Products 
         
