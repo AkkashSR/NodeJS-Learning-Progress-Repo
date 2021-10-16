@@ -42,3 +42,8 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 
 1. Started MongoDB. Personally, it looks easier than SQL.
 2. Will look more into MongoDB and Mongoose on the 15th
+
+### 16-10-2021:
+
+1. Finished off MongoDB. Looks simpler than SQL.
+2. Starting Mongoose (ORM for NoSQL) today/tomorrow.
