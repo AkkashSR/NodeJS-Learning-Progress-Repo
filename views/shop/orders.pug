@@ -11,9 +11,9 @@ block content
                     li 
                         h1 #{order.id}
                         ul 
-                            each item in order.items
+                            each item in order.products
                                 li 
-                                    h1 #{item.title} (#{item.quantity})
+                                    h1 #{item.product.title} (#{item.quantity})
 
         else 
             h1 Nothing here!

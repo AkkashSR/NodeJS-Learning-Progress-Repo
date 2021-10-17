@@ -47,3 +47,8 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 
 1. Finished off MongoDB. Looks simpler than SQL.
 2. Starting Mongoose (ORM for NoSQL) today/tomorrow.
+
+### 17-10-2021:
+
+1. Finished off Mongoose. Felt much easier than native MongoDB.
+2. Sessions and Cookies are next. Will look into them next week.

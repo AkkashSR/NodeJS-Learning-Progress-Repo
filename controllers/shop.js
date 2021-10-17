@@ -1,7 +1,8 @@
 const Product = require("../models/product");
+const Order = require("../models/order");
 
 exports.getIndex = async (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("./shop/index", {
         products: products,
@@ -13,7 +14,7 @@ exports.getIndex = async (req, res, next) => {
 };
 
 exports.getProducts = async (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("./shop/product-list", {
         products: products,
@@ -26,8 +27,10 @@ exports.getProducts = async (req, res, next) => {
 
 exports.getCart = async (req, res, next) => {
   req.user
-    .getCart()
-    .then((products) => {
+    .populate("cart.items.productId")
+    .then((user) => {
+      console.log(user.cart.items);
+      const products = user.cart.items;
       res.render("./shop/cart", {
         pageTitle: "Cart",
         path: "/cart",
@@ -90,19 +93,34 @@ exports.postCart = async (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  let fetchCart;
   req.user
-    .addOrder()
+    .populate("cart.items.productId")
+    .then((user) => {
+      const products = user.cart.items.map((item) => {
+        return { quantity: item.quantity, product: { ...item.productId._doc } };
+      });
+      const order = new Order({
+        user: {
+          name: req.user.name,
+          userId: req.user,
+        },
+        products: products,
+      });
+      return order.save();
+    })
     .then((result) => {
-      res.redirect("./orders");
+      return req.user.clearCart();
+    })
+    .then(() => {
+      res.redirect("./cart");
     })
     .catch((err) => console.log(err));
 };
 
 exports.getOrders = (req, res, next) => {
-  req.user
-    .getOrders()
+  Order.find({ "user.userId": req.user._id })
     .then((orders) => {
+      console.log(orders);
       res.render("./shop/orders", {
         path: "/orders",
         pageTitle: "Orders",
@@ -113,7 +131,8 @@ exports.getOrders = (req, res, next) => {
 };
 
 exports.getProductDetail = (req, res, next) => {
-  Product.findById(req.params.productId)
+  const prodId = req.params.productId;
+  Product.findById(prodId)
     .then((product) => {
       console.log(product);
       res.render("./shop/product-detail", {
@@ -127,7 +146,7 @@ exports.getProductDetail = (req, res, next) => {
 
 exports.postDeleteProductFromCart = async (req, res, next) => {
   req.user
-    .deleteItemFromCart(req.body.productId)
+    .removeFromCart(req.body.productId)
     .then(() => {
       res.redirect("./cart");
     })

@@ -1,6 +1,25 @@
 extends ../layout/main-layout.pug
 
 block styles 
-    link(rel="stylesheet", href="")
+    link(rel="stylesheet", href="/css/product.css")
 
-block content
+block content 
+    main
+        if products.length > 0
+            .grid 
+                each prod in products
+                    article.card.product-item 
+                        header.card__header
+                            h1.card__header #{prod.title} 
+                        div.card__image
+                            img(src= prod.imageUrl, alt= prod.imageUrl)
+                        div.card__content 
+                            h2.product__price #{prod.price}
+                            p.product__description #{prod.description}
+                        div.card__actions 
+                            a(href = "/product-detail/" + prod._id).btn Product Details
+                            form(action="./cart" method="POST")
+                                button.btn(type="Submit") Add to cart
+                                input(type="hidden", name="productId", value= prod._id)  
+        else 
+            h1 No Products
