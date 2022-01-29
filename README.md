@@ -52,3 +52,8 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 
 1. Finished off Mongoose. Felt much easier than native MongoDB.
 2. Sessions and Cookies are next. Will look into them next week.
+
+### 29-01-2022:
+
+1. I lied last time. Took me 3 more months to get back into this. But happy that I picked this up again.
+2. Sessions and Cookies are done.
