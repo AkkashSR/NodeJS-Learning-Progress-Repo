@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const csrf = require('csurf');
+const flash = require('connect-flash');
 
 const MONGODB_URI =
   "mongodb://127.0.0.1:27017/shop?directConnection=true&serverSelectionTimeoutMS=2000";
@@ -13,6 +15,7 @@ const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
 });
+const csrfProtection = csrf({});
 
 //setting the template engine
 app.set("view engine", "pug");
@@ -36,6 +39,8 @@ app.use(
     store: store,
   })
 );
+app.use(csrfProtection);
+app.use(flash());
 
 app.use((req, res, next) => {
   if(!req.session.user){
@@ -49,6 +54,12 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+})
+
 //admin and shop routes middleware
 app.use("/admin", adminRoutes);
 app.use("/", shopRoutes);
@@ -60,18 +71,18 @@ app.use(errorsController.get404Error);
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const newUser = new User({
-          name: "Akkash",
-          email: "akkashsr@gmail.com",
-          cart: {
-            items: [],
-          },
-        });
-        newUser.save();
-      }
-    });
+    // User.findOne().then((user) => {
+    //   if (!user) {
+    //     const newUser = new User({
+    //       name: "Akkash",
+    //       email: "akkashsr@gmail.com",
+    //       cart: {
+    //         items: [],
+    //       },
+    //     });
+    //     newUser.save();
+    //   }
+    // });
     console.log("Connected");
     app.listen(3000);
   })

@@ -3,8 +3,7 @@ const Product = require("../models/product");
 exports.getAddProduct = (req, res, next) => {
   res.render("./admin/add-products", {
     pageTitle: "Add a new product",
-    path: "/admin/add-product",
-    isAuthenticated: req.session.isLoggedIn
+    path: "/admin/add-product"
   });
 };
 
@@ -36,8 +35,7 @@ exports.getProducts = (req, res, next) => {
       res.render("./admin/products", {
         products: products,
         pageTitle: "Admin Products",
-        path: "/admin/products",
-        isAuthenticated: req.session.isLoggedIn
+        path: "/admin/products"
       });
     })
     .catch((err) => console.log(err));

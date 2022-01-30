@@ -18,5 +18,6 @@ block content
                 input(type="text", name="imageUrl")#imageUrl
             .form-control 
                 label(for="price") Price 
-                input(type="number", name="price" step="0.01")#price   
+                input(type="number", name="price" step="0.01")#price  
+            input(type="hidden", name="_csrf", value=(csrfToken)) 
             button.btn(type="submit") Add product
