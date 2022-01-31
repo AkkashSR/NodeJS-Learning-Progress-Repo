@@ -61,3 +61,7 @@ This is a repository to detail my NodeJS learning journey. Will try to update as
 ### 30-01-2022:
 
 1. Completed authentication
+
+### 01-02-2022:
+
+An update: I won't be updating this repo anymore. I kinda got what I needed from node now. I'll be moving on to create REST APIs using Node.js(Express) now. It was a fun ride :) .
